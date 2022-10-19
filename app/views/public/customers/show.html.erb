@@ -1,0 +1,57 @@
+<div class="h3 m-5 col-3 bg-info text-black text-center">
+    マイページ
+</div>
+
+<div class="container">
+    
+    <div class="my-3 row justify-content-start">
+        <div class="col-2 h4">登録情報</div>
+        <div class="col-4">   
+            <%= link_to edit_path(current_customer) do %>
+                <div class="btn btn-sm btn-success rounded-pill">編集する</div>
+            <% end %>
+        </div>     
+    </div>
+    <div class="row justify-content-start">
+        <div class="col-3 border border-dark bg-light">氏名</div>
+        <div class="col-6 border border-dark"><%= current_customer.last_name %><%= current_customer.first_name %></div>
+    </div>
+    <div class="row justify-content-start">
+        <div class="col-3 border border-dark bg-light">カナ</div>
+        <div class="col-6 border border-dark"><%= current_customer.last_name_kana %><%= current_customer.first_name_kana %></div>
+    </div>
+    <div class="row justify-content-start">
+        <div class="col-3 border border-dark bg-light">郵便番号</div>
+        <div class="col-6 border border-dark"><%= current_customer.postal_code %></div>
+    </div>
+    <div class="row justify-content-start">
+        <div class="col-3 border border-dark bg-light">住所</div>
+        <div class="col-6 border border-dark"><%= current_customer.address %></div>
+    </div>
+    <div class="row justify-content-start">
+        <div class="col-3 border border-dark bg-light">電話番号</div>
+        <div class="col-6 border border-dark"><%= current_customer.telephone_number %></div>
+    </div>
+    <div class="row justify-content-start">
+        <div class="col-3 border border-dark bg-light">メールアドレス</div>
+        <div class="col-6 border border-dark"><%= current_customer.email %></div>
+    </div>
+    
+    <div class="mt-4 row justify-content-start">
+        <div class="col-2 h4">配送先</div>
+        <div class="col-5">   
+            <%= link_to addresses_path(current_customer) do %>
+                <div class="btn btn-sm btn-info rounded-pill">一覧を見る</div>
+            <% end %>
+        </div>     
+    </div>
+    <div class="my-3 row justify-content-start">
+        <div class="col-2 h4">注文履歴</div>
+        <div class="col-5">   
+            <%= link_to orders_path(current_customer) do %>
+                <div class="btn btn-sm btn-info rounded-pill">一覧を見る</div>
+            <% end %>
+        </div>     
+    </div>
+</div>
+

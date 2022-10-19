@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="mt-5 row text-center">
+        <div class="col h2">本当に退会しますか？</div>
+    </div>
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="危険:">
+            <use xlink:href="#exclamation-triangle-fill"/>
+        </svg>
+        <div>
+            退会しようとしています！
+        </div>
+    </div>
+    <div class="mt-5 row">    
+        <div class="col text-center">
+            退会すると、会員登録情報や
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            これまでの購入履歴が閲覧できなくなります。
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            退会する場合は、「退会する」をクリックしてください。
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col text-center m-3">
+            <%= link_to show_path(current_customer.id) do %>
+                <button type="button" class="btn btn-info">退会しない</button>
+            <% end %>
+            <%= link_to withdrawal_path, method: :patch do %>
+                <button type="button" class="btn btn-danger">退会する</button>
+            <% end %>
+            <%#= link_to "退会する", withdrawal_path(current_customer.id), method: :post, remote: true, class: "btn btn-danger" %>
+        </div>
+    </div>
+</div>
+<div class="row">
+    
+</div>    

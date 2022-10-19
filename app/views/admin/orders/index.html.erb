@@ -1,0 +1,33 @@
+<div class="h3 d-inline bg-info text-black">
+  注文履歴一覧
+</div>
+        <table class="table table-hover table-inverse">
+            <thead>
+                <tr>
+                    <th>購入日時</th>
+                    <th>購入者</th>
+                    <th>注文個数</th>
+                    <th>注文ステータス</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @orders.each do |order| %>
+                <tr>
+                    <td>
+                        <%= link_to admin_order_path(order.id) do %>
+                            <%= order.created_at %>
+                        <% end %>
+                    </td>
+                    <td><%= order.name %></td>
+                    <td>
+                        <% @sum=0 %>
+                        <% order.order_dateils.each do |order_dateil| %>
+                            <% @sum += order_dateil.amount %>
+                        <% end %>
+                        <%= @sum %>
+                    </td>
+                    <td></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>

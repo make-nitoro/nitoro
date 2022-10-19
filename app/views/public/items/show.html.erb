@@ -1,0 +1,25 @@
+<div class="card md-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <%= image_tag @item.get_image %>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+            
+                <h5 class="card-title"><%= @item.name %></h5>
+                <p class="card-text"><%= @item.introduction %></p>
+                <p></p>
+                <div class="row">
+                    <h6 class="card-text">￥<%= @item.with_tax_price.to_s(:delimited) %></h6><p class="font-small">(税込)</p>
+                </div>    
+            <%= form_with model: CartItem.new do |f| %>    
+                <p class="card-text">
+                    <%= f.hidden_field :item_id, :value => @item.id %>
+                    <%= f.select :amount, *[1..10] %>
+                    <%= f.submit "カートに入れる", class: "btn btn-success" %>
+                </p>
+           <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class=class="h3 m-5 col-3 bg-info text-black text-center">
+    商品編集
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <p>商品画像</p>
+            <p>商品名</p>
+            <p>商品説明</p>
+            <p>ジャンル</p>
+            <p>税抜価格</p>
+            <p>販売ステータス</p>
+        </div>
+        <div class="col-8.offset-md-1">
+            <%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
+            <div class="rounded">
+                <%= f.file_field :image, accept: "image/*" %>
+            </div>選択されていません
+            <div class="rounded">
+                <%= f.text_field :name %>
+            </div>
+            <div class="rounded">
+                <%= f.text_area :introduction %>
+            </div>
+            <div class="rounded">
+                <%=f.collection_select(:genre_id, Genre.all, :id, :name, prompt: "--選択してください--") %>
+            </div>
+            <div class="rounded">
+                <%= f.text_field :price %>円
+            </div>
+            
+            <%= f.radio_button :is_active, "true" %>
+            <%= f.label :is_active, "販売中" %>
+        
+            <%= f.radio_button :is_active, "false" %>
+            <%= f.label :is_active, "販売停止中" %>
+            
+       
+                <div class="align-self-center">
+                     <%= f.submit "変更内容を保存" %>
+                     <!--<input type="submit" name="commit" value="変更を内容保存" class="btn btn-success" data-disable-with="変更内容を保存">-->
+                </div> 
+            <% end %>  
+         </div>    
+    </div>
+</div>

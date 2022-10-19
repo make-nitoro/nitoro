@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="h3 m-5 col-3 bg-info text-black text-center">
+            ショッピングカート
+        </div>
+        <div class="m-5 col-md-5 offset-md-2">
+            <%= button_to "カートを空にする",  destroy_all_path, method: :delete %>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>商品名</th>
+                <th>単価(税込)</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @cart_items.each do |cart_item| %>
+            <tr>
+                <td><%= cart_item.item.name %></td>
+                <td><%= cart_item.item.with_tax_price%></td>
+                <td>
+                    
+                    <%= form_with model: cart_item, url: cart_item_path(cart_item.id) do |f| %>   
+                        <%= cart_item.amount %>
+                        <%= f.select :amount, *[1..10] %>
+                        <%= f.submit "変更", class: "btn btn-success" %>
+                   <% end %>
+                </td>
+                <td><%= cart_item.subtotal%></td>
+                <td>
+                    <%= link_to cart_item_path(cart_item), method: :delete do %>
+                        <div class="btn btn-sm btn-danger">削除する</div>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <div class="row mt-5">
+                <div class="text-start">
+                    <%= link_to top_path do %>
+                        <div class="btn btn-sm btn-info">買い物を続ける</div>
+                    <% end %>
+                </div>
+                <div class="text-end">
+                    <span class="border bg-light">
+                        合計金額
+                    </span>
+                    <span class="bprder">
+                        ¥<%= @all_price.round.to_s(:delimited)%>
+                    </span>
+                </div>
+    </div>
+    <div class="mt-5 row">
+        <div class="text-center">
+            
+            <% if @cart_items.empty? %>
+                <input class="btn btn-success" type="submit" value="情報入力に進む"disabled>
+            <% else %>
+                <%= link_to new_order_path(@customer) do %>
+                    <input class="btn btn-success" type="submit" value="情報入力に進む">
+                <% end %>
+            <% end %>    
+        </div>
+    </div>
+</div>    

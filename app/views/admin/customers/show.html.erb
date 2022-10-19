@@ -1,0 +1,60 @@
+<div class="h3 m-5 col-3 bg-info text-black text-center">
+  <%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細
+</div>
+
+<table class="table table-borderless">
+    <thead>
+        <tr>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>会員ID</th>
+            <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+            <th>氏名</th>
+            <td><%= @customer.last_name %><%= @customer.first_name %></td>
+        </tr>
+        <tr>
+            <th>フリガナ</th>
+            <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+            <th>郵便番号</th>
+            <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+            <th>住所</th>
+            <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+            <th>電話番号</th>
+            <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+            <th>会員ステータス</th>
+            <td>
+                <% if @customer.is_active %> 
+                    <p>有効</p>
+                <% else %> 
+                    <p>退会</p>
+                <% end %> 
+            </td>
+        </tr>
+    </tbody>
+</table>
+    
+        <%= link_to edit_admin_customer_path(@customer) do %>
+            <button type="button" class="btn btn-success">編集する</button>
+        <% end %>
+        
+
+        <%= link_to admin_orders_path do %>
+            <button type="button" class="btn btn-info">注文履歴一覧を見る</button>
+        <% end %>
+      
