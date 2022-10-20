@@ -8,9 +8,9 @@ class Public::CartItemsController < ApplicationController
         @cart_item = current_customer.cart_items.new(cart_item_params)
         @cart_item_already = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
         if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-            #@cart_item.amount += @cart_item_already.amount
-            @cart_item_already.amount += @cart_item.amount
-            @cart_item_already.update(amount: @cart_item.amount + @cart_item_already.amount)
+            @new_amount = @cart_item.amount + @cart_item_already.amount
+            #@cart_item_already.amount += @cart_item.amount
+            @cart_item_already.update(amount: @new_amount)
             redirect_to cart_items_path
         else
             @cart_item.save
